@@ -6,7 +6,7 @@ enum DanceMove {
 }
 
 fn get_moves(input: &str) -> Vec<DanceMove> {
-    let mut moves = Vec::new();
+/*    let mut moves = Vec::new();
 
     for move_str in input.split(',') {
         let move_string = move_str.to_string();
@@ -24,13 +24,14 @@ fn get_moves(input: &str) -> Vec<DanceMove> {
 
     println!("{:#?}", moves);
 
-    moves
+    moves */
+    unimplemented!();
 }
 
 fn part1(input: &str, programs: &String) -> String {
     get_moves(input);
 
-    *programs
+    unimplemented!();
 }
 
 #[test]
