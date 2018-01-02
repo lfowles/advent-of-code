@@ -1,7 +1,10 @@
 use std::collections::HashSet;
 
 pub fn num_valid_passphrases(passphrases: &str, check_fn: fn(&str) -> bool) -> i32 {
-    let result = passphrases.trim().split('\n').filter(|passphrase| check_fn(*passphrase)).count();
+    let result = passphrases.trim()
+                            .split('\n')
+                            .filter(|passphrase| check_fn(*passphrase))
+                            .count();
     result as i32
 }
 
@@ -9,7 +12,7 @@ pub fn part1_check(passphrase: &str) -> bool {
     let mut unique_words = HashSet::new();
     for word in passphrase.split(' ') {
         if !unique_words.insert(word) {
-            return false
+            return false;
         }
     }
     true
@@ -21,7 +24,7 @@ pub fn part2_check(passphrase: &str) -> bool {
         let mut canonical_word = word.bytes().collect::<Vec<_>>();
         canonical_word.sort();
         if !unique_words.insert(canonical_word) {
-            return false
+            return false;
         }
     }
     true

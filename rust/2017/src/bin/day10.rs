@@ -2,8 +2,8 @@ fn knot_hash_round(list: &mut Vec<i32>, lengths: &Vec<i32>, position: &mut usize
     let list_size = list.len();
 
     for &length in lengths {
-        let reversed = (*position..*position+length as usize).map(|i| i % list_size).rev();
-        let new_elems = (*position..*position+length as usize)
+        let reversed = (*position..*position + length as usize).map(|i| i % list_size).rev();
+        let new_elems = (*position..*position + length as usize)
             .map(|i| i % list_size)
             .zip(reversed)
             .filter(|&(pos, rev_pos)| pos < rev_pos);
@@ -18,7 +18,9 @@ fn knot_hash_round(list: &mut Vec<i32>, lengths: &Vec<i32>, position: &mut usize
 }
 
 fn part1(input: &str, list_size: i32) -> i32 {
-    let lengths: Vec<i32> =     input.split(',').map(|s| s.trim().parse::<i32>().unwrap()).collect();
+    let lengths: Vec<i32> = input.split(',')
+                                 .map(|s| s.trim().parse::<i32>().unwrap())
+                                 .collect();
 
     let mut list: Vec<i32> = (0..list_size).collect();
 
@@ -53,17 +55,11 @@ fn part2(input: &str) -> String {
     for i in 0..16 {
         let start = i * 16;
         let end = start + 16;
-        let hash = list[start..end].iter().fold(0, |acc, &x| acc ^ x );
-        dense_hash.push(hash);
-
+        let hash = list[start..end].iter().fold(0, |acc, &x| acc ^ x);
+        dense_hash.push(format!("{:02x}", hash));
     }
 
-    let mut final_hash = String::new();
-    for hash in &dense_hash {
-        final_hash.extend(format!("{:02x}", *hash as u8).chars());
-    }
-
-    final_hash
+    dense_hash.concat()
 }
 
 #[test]
