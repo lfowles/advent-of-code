@@ -1,4 +1,4 @@
-fn knot_hash_round(list: &mut Vec<i32>, lengths: &Vec<i32>, position: &mut usize, skip_size: &mut usize) {
+fn knot_hash_round(list: &mut [i32], lengths: &[i32], position: &mut usize, skip_size: &mut usize) {
     let list_size = list.len();
 
     for &length in lengths {
@@ -50,7 +50,7 @@ fn part2(input: &str) -> String {
         knot_hash_round(&mut list, &lengths, &mut position, &mut skip_size);
     }
 
-    let mut dense_hash = Vec::new();
+    let mut dense_hash = Vec::with_capacity(16);
 
     for i in 0..16 {
         let start = i * 16;
