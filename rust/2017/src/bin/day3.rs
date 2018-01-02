@@ -33,8 +33,6 @@ fn ring_cardinal_index(ring_num: i32, direction: Direction) -> i32 {
 
 // Part 1
 fn distance_from_center(square_num: i32) -> i32 {
-//    use core::num::Float;
-
     // memory index is 1-based
     let ring_num = (((square_num as f32).sqrt() - 1.0) / 2.0).ceil() as i32;
 
