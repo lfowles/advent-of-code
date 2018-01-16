@@ -50,7 +50,7 @@ impl DanceMove {
             bail!("Partner 2 wrong size: '{}'", partner2);
         }
 
-        if ! s.is_ascii() {
+        if !s.is_ascii() {
             bail!("Partner args must be ascii");
         }
 
@@ -121,22 +121,17 @@ fn test_part1() {
 }
 
 fn part2(input: &str, programs: &String) -> Result<String> {
-    // Get first permutation and repeat that
     let mut program_line = part1(&input, &programs)?;
 
     let mut seen_set = std::collections::HashSet::new();
     let mut cycle = 0;
 
     while seen_set.insert(program_line.clone().into_bytes()) {
-
         program_line = part1(&input, &program_line)?;
-
         cycle += 1;
     }
 
     let remaining = 1000000000 % cycle;
-
-    println!("remaining {} cycle {}", remaining, cycle);
 
     program_line = programs.clone();
 
